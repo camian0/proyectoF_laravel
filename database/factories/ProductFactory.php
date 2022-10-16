@@ -13,8 +13,15 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
+        $measures = ['ml', 'l', 'capsulas', 'grs'];
+        $gender   = ['female', 'male'];
         return [
-
+            'name'                 => $this->faker->name($gender[$this->faker->numberBetween(0, 1)]),
+            'quantity_and_measure' => $this->faker->numberBetween(1, 81294) . $measures[$this->faker->numberBetween(0, 3)],
+            'description'          => $this->faker->text(),
+            'expiration_date'      => $this->faker->date('d-m-Y'),
+            'lot_number'           => $this->faker->randomNumber(3),
+            'category_id'          => $this->faker->numberBetween(1, 5),
         ];
     }
 }
