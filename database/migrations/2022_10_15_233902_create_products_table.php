@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->date('expiration_date');
             $table->string('lot_number', 50);
-            $table->foreignId('column_id')->references('id')->on('categories');
+            $table->foreignId('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }
