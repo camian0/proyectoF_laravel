@@ -19,13 +19,63 @@
 
     <title>@yield('title')</title>
 </head>
+<style>
+    main {
+        margin-top: 58px;
+        width: 100%;
+    }
+
+    .navbar {
+        background-color: rgb(71, 207, 59) !important;
+        font-size: 1.5rem;
+    }
+
+    .nav-link {
+        color: white;
+        font-style: oblique;
+        font-weight: 400;
+    }
+
+    .nav-link:hover {
+        color: rgb(33, 90, 50);
+    }
+</style>
 
 <body>
+
+    <nav class="navbar sticky-top navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#">Iniciar sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
     <div class="row">
         <div class="col-sm-12 col-md-1  col-lg-1"></div>
         <div class="col-sm-12 col-md-10 col-lg-10">
-            @yield('container')
+            <main>
+                @yield('container')
+            </main>
         </div>
         <div class="col-sm-12 col-md-1  col-lg-1"></div>
     </div>
