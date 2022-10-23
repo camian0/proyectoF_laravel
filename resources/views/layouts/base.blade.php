@@ -21,7 +21,7 @@
 </head>
 <style>
     main {
-        margin-top: 58px;
+        margin-top: 40px;
         width: 100%;
     }
 
@@ -32,8 +32,7 @@
 
     .nav-link {
         color: white;
-        font-style: oblique;
-        font-weight: 400;
+        font-weight: 450;
     }
 
     .nav-link:hover {
