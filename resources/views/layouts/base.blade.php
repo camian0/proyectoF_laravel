@@ -62,7 +62,7 @@
                         <a class="nav-link" href="#">Pricing</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="#">Iniciar sesión</a>
+                        <a class="nav-link" href="/login">Iniciar sesión</a>
                     </li>
                 </ul>
             </div>
