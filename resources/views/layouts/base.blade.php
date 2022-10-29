@@ -56,10 +56,10 @@
                         <a class="nav-link active" aria-current="page" href="/">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
+                        <a class="nav-link" href="#">Categorías</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
+                        <a class="nav-link" href="#">Productos</a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="/login">Iniciar sesión</a>
