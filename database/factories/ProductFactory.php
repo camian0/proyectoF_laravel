@@ -22,6 +22,7 @@ class ProductFactory extends Factory
             'expiration_date'      => $this->faker->date('d-m-Y'),
             'lot_number'           => $this->faker->randomNumber(3),
             'category_id'          => $this->faker->numberBetween(1, 5),
+            'image'                => $this->faker->numberBetween(0, 10),
         ];
     }
 }
