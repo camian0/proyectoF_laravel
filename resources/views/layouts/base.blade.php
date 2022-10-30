@@ -61,9 +61,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Productos</a>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="/login">Iniciar sesión</a>
-                    </li>
+                    @guest
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/login">Iniciar sesión</a>
+                        </li>
+                    @endguest
                 </ul>
             </div>
         </div>
