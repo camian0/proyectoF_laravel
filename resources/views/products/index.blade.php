@@ -19,15 +19,34 @@
 
         .bottom {
             margin: 5px;
+            display: flex;
+            align-content: center;
+            justify-content: flex-end;
+        }
+
+        .bottom a {
+            margin: 0 5px;
         }
 
         .button-show {
-            background-color: rgb(71, 207, 59);
-            color: white;
+            color: rgb(71, 207, 59);
+            /* color: white; */
         }
 
         .button-cart {
-            background-color: rgb(227, 225, 225);
+            color: rgb(196, 191, 191);
+        }
+
+        .button-add {
+            color: rgb(19, 146, 231);
+        }
+
+        .button-edit {
+            color: rgb(221, 129, 8);
+        }
+
+        .button-delete {
+            color: red;
         }
     </style>
 
@@ -49,7 +68,22 @@
                             Cantidad: {{ $product->quantity_and_measure }}
                         </p>
                         <div class="bottom text-end">
-                            <a href="#" class="btn button-show"><i class="fa-solid fa-eye"></i></a>
+                            {{-- @auth --}}
+                            <a href="#" class="btn button-add"><i class="fa-solid fa-circle-plus"></i></a>
+                            <a href="#" class="btn button-edit"><i class="fa-solid fa-pencil"></i></a>
+                            <form action="{{ route('products.destroy', $product->id) }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <a type="submit" class="btn button-delete" style="display: inline-block"
+                                    onclick="return confirm('¿Seguro de borrar el estudiante {{ $product->name }}?')">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </form>
+                            {{-- @endauth --}}
+
+
+                            <a href="{{ route('products.show', $product->id) }}" class="btn button-show"><i
+                                    class="fa-solid fa-eye"></i></a>
                             <a href="#" class="btn button-cart"><i class="fa-solid fa-cart-shopping"></i></a>
                         </div>
                     </div>
