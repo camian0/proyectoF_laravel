@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,7 @@ class ProductController extends Controller
 
     public function __construct()
     {
-
+        // $this->middleware('auth')->except('index');
     }
 
     const IMAGES = [
@@ -49,7 +50,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -60,7 +61,11 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $image   = rand(0, count(ProductController::IMAGES) - 1);
+        $product = new Product();
+        $product->fill($request->all());
+        $product->image = $image;
+        $product->save();
     }
 
     /**
@@ -69,9 +74,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        $product        = Product::where('id', $product->id)->with('category')->first();
+        $product->image = ProductController::IMAGES[$product->image];
+        return view('products.show', ['product' => $product]);
     }
 
     /**
@@ -80,7 +87,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
         //
     }
@@ -108,9 +115,9 @@ class ProductController extends Controller
         //
     }
 
-    private function getProducts()
+    private function getCategory()
     {
-        $products = Product::select('products.id', 'products.name')->get();
-        return $products;
+        $categories = Category::select('categories.id', 'categories.name')->get();
+        return $categories;
     }
 }
