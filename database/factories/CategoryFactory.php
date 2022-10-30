@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class CategoryFactory extends Factory
 {
@@ -13,10 +14,13 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
+        $gender = ['female', 'male'];
+        $name   = $this->faker->name($gender[$this->faker->numberBetween(0, 1)]);
         return [
-            'name'        => $this->faker->name('female'),
+            'name'        => $name,
             'description' => $this->faker->text(),
             'priority'    => $this->faker->numberBetween(1, 5),
+            'slug'        => Str::slug($name),
         ];
     }
 }
