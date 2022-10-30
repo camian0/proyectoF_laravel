@@ -82,7 +82,7 @@
                             {{-- @endauth --}}
 
 
-                            <a href="{{ route('products.show', $product->id) }}" class="btn button-show"><i
+                            <a href="{{ route('products.show', $product) }}" class="btn button-show"><i
                                     class="fa-solid fa-eye"></i></a>
                             <a href="#" class="btn button-cart"><i class="fa-solid fa-cart-shopping"></i></a>
                         </div>
