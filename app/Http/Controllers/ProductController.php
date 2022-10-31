@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -50,7 +51,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $categories = $this->getCategories();
+        return view('products.create', ['categories' => $categories]);
     }
 
     /**
@@ -59,19 +61,20 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         $image   = rand(0, count(ProductController::IMAGES) - 1);
         $product = new Product();
         $product->fill($request->all());
-        $product->image = $image;
+        $product->quantity_and_measure = $request->quantity . ' ' . $request->measure;
+        $product->image                = $image;
+        $product->slug                 = Str::slug($product->name);
         $product->save();
+        return redirect('/products');
     }
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show(Product $product)
@@ -99,7 +102,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request)
     {
         //
     }
@@ -110,12 +113,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        // $product->delete();
+        // redirect('/products');
     }
 
-    private function getCategory()
+    private function getCategories()
     {
         $categories = Category::select('categories.id', 'categories.name')->get();
         return $categories;
