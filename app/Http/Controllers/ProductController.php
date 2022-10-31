@@ -92,7 +92,24 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $measures                 = ['ml' => 'ml (Mililitros)', 'L' => 'L (Litros)', 'capsulas' => 'capsulas', 'g' => 'g (Gramos)'];
+        $categories               = $this->getCategories();
+        $split                    = explode(' ', $product->quantity_and_measure);
+        $quantity                 = $split[0];
+        $measure                  = $split[1];
+        $product->quantity        = ($quantity !== null) ? $quantity : null;
+        $product->measure         = ($measure !== null) ? $measure : null;
+        $product->expiration_date = date('Y-m-d', strtotime($product->expiration_date));
+
+        // dd(Carbon::parse($product->expiration_date)->format('Y-m-d'));
+        // dd(date('d-m-Y', strtotime($product->expiration_date)));
+        // dd($product);
+        return view('products.edit', [
+            'product'    => $product,
+            'categories' => $categories,
+            'measures'   => $measures,
+        ]);
+
     }
 
     /**
@@ -102,9 +119,14 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request)
+    public function update(ProductRequest $request, $id)
     {
-        //
+        $product = Product::where('slug', $id)->first();
+        $product->fill($request->all());
+        $product->quantity_and_measure = $request->quantity . ' ' . $request->measure;
+        $product->slug                 = Str::slug($product->name);
+        $product->update();
+        return redirect('/products');
     }
 
     /**
