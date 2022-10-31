@@ -50,7 +50,13 @@
         }
     </style>
 
+
     <h1 class="title">Productos</h1>
+
+    {{-- @auth --}}
+    <a href="{{ route('products.create') }}" class="btn button-add"><i class="fa-solid fa-circle-plus"></i></a>
+    {{-- @endauth --}}
+
 
     @foreach ($products as $product)
         <div class="card">
@@ -69,8 +75,6 @@
                         </p>
                         <div class="bottom text-end">
                             {{-- @auth --}}
-                            <a href="{{ route('products.create') }}" class="btn button-add"><i
-                                    class="fa-solid fa-circle-plus"></i></a>
                             <a href="#" class="btn button-edit"><i class="fa-solid fa-pencil"></i></a>
                             <form action="{{ route('products.destroy', $product->id) }}" method="post">
                                 @csrf
