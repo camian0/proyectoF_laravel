@@ -75,7 +75,8 @@
                         </p>
                         <div class="bottom text-end">
                             {{-- @auth --}}
-                            <a href="#" class="btn button-edit"><i class="fa-solid fa-pencil"></i></a>
+                            <a href=" {{ route('products.edit', $product) }} " class="btn button-edit"><i
+                                    class="fa-solid fa-pencil"></i></a>
                             <form action="{{ route('products.destroy', $product->id) }}" method="post">
                                 @csrf
                                 @method('delete')
