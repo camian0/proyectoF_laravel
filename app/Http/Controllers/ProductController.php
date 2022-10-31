@@ -137,8 +137,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        // $product->delete();
-        // redirect('/products');
+        $product->delete();
+        return redirect('/products');
     }
 
     private function getCategories()

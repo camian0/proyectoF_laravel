@@ -77,13 +77,13 @@
                             {{-- @auth --}}
                             <a href=" {{ route('products.edit', $product) }} " class="btn button-edit"><i
                                     class="fa-solid fa-pencil"></i></a>
-                            <form action="{{ route('products.destroy', $product->id) }}" method="post">
+                            <form action="{{ route('products.destroy', $product) }}" method="post">
                                 @csrf
                                 @method('delete')
-                                <a type="submit" class="btn button-delete" style="display: inline-block"
-                                    onclick="return confirm('¿Seguro de borrar el estudiante {{ $product->name }}?')">
+                                <button type="submit" class="btn button-delete" style="display: inline-block"
+                                    onclick="return confirm('¿Seguro de borrar el producto {{ $product->name }}?')">
                                     <i class="fa-solid fa-trash"></i>
-                                </a>
+                                </button>
                             </form>
                             {{-- @endauth --}}
 
