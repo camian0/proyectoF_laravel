@@ -15,7 +15,7 @@ class CategoryController extends Controller
 
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -111,7 +111,7 @@ class CategoryController extends Controller
         return redirect('/categories');
     }
 
-    private function getCategories()
+    public function getCategories()
     {
         $categories = Category::all();
         return $categories;
