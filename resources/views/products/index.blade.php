@@ -1,6 +1,8 @@
-@extends('layouts.base')
-@section('title', 'Lista de productos')
-@section('container')
+{{-- @extends('layouts.base') --}}
+{{-- @section('title', 'Lista de productos') --}}
+{{-- @section('container') --}}
+<x-app-layout>
+
     <style>
         .title {
             margin-bottom: 30px;
@@ -53,6 +55,12 @@
 
     <h1 class="title">Productos</h1>
 
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Productos') }}
+        </h2>
+    </x-slot>
+
     {{-- @auth --}}
     <a href="{{ route('products.create') }}" class="btn button-add"><i class="fa-solid fa-circle-plus"></i></a>
     {{-- @endauth --}}
@@ -62,8 +70,8 @@
         <div class="card">
             <div class="row">
                 <div class="col-sm-4 text-center">
-                    <img src="{{ $product->image }} " style="max-height: 380px; width: auto" class="card-img-top img-fluid"
-                        alt="imagen producto">
+                    <img src="{{ $product->image }} " style="max-height: 380px; width: auto"
+                        class="card-img-top img-fluid" alt="imagen producto">
                 </div>
                 <div class="col-sm-8">
                     <div class="card-body">
@@ -97,4 +105,5 @@
             </div>
         </div>
     @endforeach
-@endsection
+</x-app-layout>
+{{-- @endsection --}}
