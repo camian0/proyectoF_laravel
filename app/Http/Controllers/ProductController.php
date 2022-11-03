@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
+use App\Mail\ProductCreate;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
+    const EMAILDUMMY = 'me@serve.com';
 
     public function __construct()
     {
@@ -65,6 +68,9 @@ class ProductController extends Controller
         $product->quantity_and_measure = $request->quantity . ' ' . $request->measure;
         $product->image                = $image;
         $product->slug                 = Str::slug($product->name);
+        $mailProduct                   = clone $product;
+        $mailProduct->image            = ProductController::IMAGES[$product->image];
+        Mail::to(ProductController::EMAILDUMMY)->send(new ProductCreate($product));
         $product->save();
         return redirect('/products');
     }

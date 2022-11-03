@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest;
+use App\Mail\CategoryCreate;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
+    const EMAILDUMMY = 'me@serve.com';
+
     public function __construct()
     {
-        // $this->middleware('auth')->except('index');
+        // $this->middleware('auth');
     }
 
     /**
@@ -48,6 +52,7 @@ class CategoryController extends Controller
         $category = new Category();
         $category->fill($request->all());
         $category->slug = Str::slug($category->name);
+        Mail::to(ProductController::EMAILDUMMY)->send(new CategoryCreate($category));
         $category->save();
         return redirect('/categories');
     }
