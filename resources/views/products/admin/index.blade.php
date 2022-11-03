@@ -1,8 +1,4 @@
-{{-- @extends('layouts.base') --}}
-{{-- @section('title', 'Lista de productos') --}}
-{{-- @section('container') --}}
 <x-app-layout>
-
     <style>
         .title {
             margin-bottom: 30px;
@@ -61,10 +57,7 @@
         </h2>
     </x-slot>
 
-    {{-- @auth --}}
     <a href="{{ route('products.create') }}" class="btn button-add"><i class="fa-solid fa-circle-plus"></i></a>
-    {{-- @endauth --}}
-
 
     @foreach ($products as $product)
         <div class="card">
@@ -106,4 +99,3 @@
         </div>
     @endforeach
 </x-app-layout>
-{{-- @endsection --}}
