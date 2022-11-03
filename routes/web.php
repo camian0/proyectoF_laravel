@@ -19,10 +19,6 @@ Route::get('/', function () {
     return redirect('/products');
 });
 
-// Route::get('login', function () {
-//     return view('login');
-// });
-
 Route::get('products/admin', function () {
     $productController = new ProductController();
     $products          = $productController->getProducts();
