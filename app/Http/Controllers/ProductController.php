@@ -36,11 +36,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        foreach ($products as $product) {
-            $code           = $product->image;
-            $product->image = ProductController::IMAGES[$code];
-        }
+        $products = $this->getProducts();
         return view('products.index', ['products' => $products]);
     }
 
@@ -145,5 +141,20 @@ class ProductController extends Controller
     {
         $categories = Category::select('categories.id', 'categories.name')->get();
         return $categories;
+    }
+
+    private function addImage($products)
+    {
+        foreach ($products as $product) {
+            $code           = $product->image;
+            $product->image = ProductController::IMAGES[$code];
+        }
+    }
+
+    public function getProducts()
+    {
+        $products = Product::all();
+        $this->addImage($products);
+        return $products;
     }
 }
