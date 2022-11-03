@@ -47,7 +47,6 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
         <div class="content">
-            <x-jet-validation-errors class="mb-4" />
             <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 25rem;">
                 <div class="card-body">
                     <h5 class="card-title text-center">Ingresa tu usuario</h5>
@@ -63,6 +62,7 @@
                                 value="{{ old('password') }}">
                             <label for="password" name="password">Contraseña</label>
                         </div>
+                        <x-jet-validation-errors class="m-3" />
                         <hr>
                         <div class="footer-buttons text-center">
                             <button type="submit" class="submit-button col-12 btn">Iniciar sesión</button>
