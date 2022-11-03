@@ -9,6 +9,11 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        // $this->middleware('auth')->except('index');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -66,9 +71,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('categories.edit', [
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -80,7 +87,11 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, $id)
     {
-        //
+        $category = Category::where('slug', $id)->first();
+        $category->fill($request->all());
+        $category->slug = Str::slug($category->name);
+        $category->update();
+        return redirect('/categories');
     }
 
     /**
@@ -92,7 +103,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        redirect('/categories');
+        return redirect('/categories');
     }
 
     private function getCategories()
