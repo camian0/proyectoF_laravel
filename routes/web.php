@@ -27,6 +27,14 @@ Route::get('products/admin', function () {
     ]);
 })->name('productsAdmin');
 
+Route::get('categories/admin', function () {
+    $categoryController = new CategoryController();
+    $categories         = $categoryController->getCategories();
+    return view('categories.admin.index', [
+        'categories' => $categories,
+    ]);
+})->name('categoriesAdmin');
+
 Route::resource('products', ProductController::class);
 Route::resource('categories', CategoryController::class);
 
