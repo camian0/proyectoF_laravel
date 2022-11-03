@@ -22,8 +22,6 @@ Route::get('/', function () {
 //     return view('login');
 // });
 
-Route::resource('/products', ProductController::class);
-
 Route::get('products/admin', function () {
     $productController = new ProductController();
     $products          = $productController->getProducts();
@@ -31,6 +29,8 @@ Route::get('products/admin', function () {
         'products' => $products,
     ]);
 })->name('productsAdmin');
+
+Route::resource('/products', ProductController::class);
 
 Route::middleware([
     'auth:sanctum',
