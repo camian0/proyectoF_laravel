@@ -58,8 +58,9 @@
             {{ __('Categorias') }}
         </h2>
     </x-slot>
-
-    <a href="{{ route('categories.create') }}" class="btn button-add"><i class="fa-solid fa-circle-plus"></i></a>
+    @auth
+        <a href="{{ route('categories.create') }}" class="btn button-add"><i class="fa-solid fa-circle-plus"></i></a>
+    @endauth
 
     <div class="table-responsive">
         <table class="table table-striped table-borderless">
@@ -77,19 +78,18 @@
                         <td> {{ $category->description }} </td>
                         <td>
                             <div class="bottom text-end">
-                                {{-- @auth --}}
-                                <a href=" {{ route('categories.edit', $category) }} " class="btn button-edit"><i
-                                        class="fa-solid fa-pencil"></i></a>
-                                <form action="{{ route('categories.destroy', $category) }}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn button-delete" style="display: inline-block"
-                                        onclick="return confirm('¿Seguro de borrar la categoría {{ $category->name }}?')">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </form>
-                                {{-- @endauth --}}
-
+                                @auth
+                                    <a href=" {{ route('categories.edit', $category) }} " class="btn button-edit"><i
+                                            class="fa-solid fa-pencil"></i></a>
+                                    <form action="{{ route('categories.destroy', $category) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn button-delete" style="display: inline-block"
+                                            onclick="return confirm('¿Seguro de borrar la categoría {{ $category->name }}?')">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
+                                @endauth
 
                                 <a href="{{ route('categories.show', $category) }}" class="btn button-show"><i
                                         class="fa-solid fa-eye"></i></a>

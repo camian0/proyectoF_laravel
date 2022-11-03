@@ -1,8 +1,6 @@
 @extends('layouts.base')
 @section('title', 'Lista de productos')
 @section('container')
-    {{-- <x-app-layout> --}}
-
     <style>
         .title {
             margin-bottom: 30px;
@@ -55,15 +53,9 @@
 
     <h1 class="title">Productos</h1>
 
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Productos') }}
-        </h2>
-    </x-slot>
-
-    {{-- @auth --}}
-    <a href="{{ route('products.create') }}" class="btn button-add"><i class="fa-solid fa-circle-plus"></i></a>
-    {{-- @endauth --}}
+    @auth
+        <a href="{{ route('products.create') }}" class="btn button-add"><i class="fa-solid fa-circle-plus"></i></a>
+    @endauth
 
 
     @foreach ($products as $product)
@@ -82,18 +74,18 @@
                             Cantidad: {{ $product->quantity_and_measure }}
                         </p>
                         <div class="bottom text-end">
-                            {{-- @auth --}}
-                            <a href=" {{ route('products.edit', $product) }} " class="btn button-edit"><i
-                                    class="fa-solid fa-pencil"></i></a>
-                            <form action="{{ route('products.destroy', $product) }}" method="post">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="btn button-delete" style="display: inline-block"
-                                    onclick="return confirm('¿Seguro de borrar el producto {{ $product->name }}?')">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </form>
-                            {{-- @endauth --}}
+                            @auth
+                                <a href=" {{ route('products.edit', $product) }} " class="btn button-edit"><i
+                                        class="fa-solid fa-pencil"></i></a>
+                                <form action="{{ route('products.destroy', $product) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn button-delete" style="display: inline-block"
+                                        onclick="return confirm('¿Seguro de borrar el producto {{ $product->name }}?')">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                            @endauth
 
 
                             <a href="{{ route('products.show', $product) }}" class="btn button-show"><i
@@ -105,5 +97,4 @@
             </div>
         </div>
     @endforeach
-    {{-- </x-app-layout> --}}
 @endsection
