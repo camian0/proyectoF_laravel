@@ -24,6 +24,14 @@ Route::get('/', function () {
 
 Route::resource('/products', ProductController::class);
 
+Route::get('products/admin', function () {
+    $productController = new ProductController();
+    $products          = $productController->getProducts();
+    return view('products.admin.index', [
+        'products' => $products,
+    ]);
+})->name('productsAdmin');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
