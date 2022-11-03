@@ -1,7 +1,7 @@
-@extends('layouts.base')
-@section('title', 'Lista de productos')
-@section('container')
-    {{-- <x-app-layout> --}}
+{{-- @extends('layouts.base') --}}
+{{-- @section('title', 'Lista de productos') --}}
+{{-- @section('container') --}}
+<x-app-layout>
 
     <style>
         .title {
@@ -70,8 +70,8 @@
         <div class="card">
             <div class="row">
                 <div class="col-sm-4 text-center">
-                    <img src="{{ $product->image }} " style="max-height: 380px; width: auto" class="card-img-top img-fluid"
-                        alt="imagen producto">
+                    <img src="{{ $product->image }} " style="max-height: 380px; width: auto"
+                        class="card-img-top img-fluid" alt="imagen producto">
                 </div>
                 <div class="col-sm-8">
                     <div class="card-body">
@@ -105,5 +105,5 @@
             </div>
         </div>
     @endforeach
-    {{-- </x-app-layout> --}}
-@endsection
+</x-app-layout>
+{{-- @endsection --}}
