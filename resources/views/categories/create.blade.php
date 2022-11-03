@@ -1,5 +1,5 @@
 @extends('layouts.base')
-@section('title', 'Crear producto')
+@section('title', 'Crear categoría')
 @section('container')
     <style>
         .header {
