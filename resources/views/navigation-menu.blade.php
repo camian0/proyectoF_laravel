@@ -18,6 +18,9 @@
                     <x-jet-nav-link href="{{ route('productsAdmin') }}" :active="request()->routeIs('productsAdmin')">
                         {{ __('Productos') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('categoriesAdmin') }}" :active="request()->routeIs('categoriesAdmin')">
+                        {{ __('Categorías') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 
@@ -159,6 +162,9 @@
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('productsAdmin') }}" :active="request()->routeIs('productsAdmin')">
                 {{ __('Productos') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('categoriesAdmin') }}" :active="request()->routeIs('categoriesAdmin')">
+                {{ __('Categorías') }}
             </x-jet-responsive-nav-link>
         </div>
 
