@@ -70,7 +70,7 @@ class ProductController extends Controller
         $product->slug                 = Str::slug($product->name);
         $mailProduct                   = clone $product;
         $mailProduct->image            = ProductController::IMAGES[$product->image];
-        Mail::to(ProductController::EMAILDUMMY)->send(new ProductCreate($product));
+        Mail::to(ProductController::EMAILDUMMY)->send(new ProductCreate($mailProduct));
         $product->save();
         return redirect('/products');
     }
